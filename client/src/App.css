@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
+  background-color: #0084ff;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.profile-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cards-table {
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cards-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.cards-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+.cards-table input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+
+.cards-table img {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+.cards-table .delete-icon {
+  cursor: pointer;
+  color: #d9534f;
+}
+
+.add-card-btn {
+  margin-top: 20px;
+}
+
+.deck-name {
+  font-weight: bold;
+  font-size: 500;
 }
