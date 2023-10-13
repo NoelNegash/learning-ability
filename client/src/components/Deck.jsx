@@ -54,12 +54,12 @@ const Deck = ({ deck, refetch }) => {
                 </Container>
                 <hr/>
                 <Col>
-                    <Row >
+                    <Col >
                     <Button className='m-2' onClick={() => setDeckIncrement(deck, 1)} variant={deck.increment === 1 ? 'primary' : 'secondary'} size='sm'>15 sec</Button>
                     <Button className='m-2' onClick={() => setDeckIncrement(deck, 2)} variant={deck.increment === 2 ? 'primary' : 'secondary'} size='sm'>30 sec</Button>
                     <Button className='m-2' onClick={() => setDeckIncrement(deck, 4)} variant={deck.increment === 4 ? 'primary' : 'secondary'} size='sm'>60 sec</Button>
                     <Button className='m-2' onClick={() => setDeckIncrement(deck, 6)} variant={deck.increment === 6 ? 'primary' : 'secondary'} size='sm'>1.5 min</Button>
-                    </Row>
+                    </Col>
                     <Row>
                     
                     <Button className='m-2' onClick={() => setDeckIncrement(deck, 12)} variant={deck.increment === 12 ? 'primary' : 'secondary'} size='sm'>3 min(Spectrum)</Button>

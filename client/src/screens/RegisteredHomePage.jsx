@@ -1,8 +1,9 @@
 import { useDecksQuery, useNewDeckMutation, useUpdateDeckMutation } from "../slices/deckApiSlice"
-import { Row, Col, Container, Button } from "react-bootstrap"
+import { Row, Col, Container, Button, Card } from "react-bootstrap"
 import Loader from '../components/Loader'
 import Deck from "../components/Deck"
 import { useEffect } from "react"
+import logo from '../logo.jpeg'
 
 const RegisteredHomePage = () => {
     const {data: decks, isLoading, refetch} = useDecksQuery()
@@ -19,6 +20,14 @@ const RegisteredHomePage = () => {
 
     return (
         <Container className='my-5'>
+            <Card>
+                <img src={logo} alt='logo' height='200px'></img>
+                <p className="text-center mb-4">
+                    The best working memory system to study for all your memorization needs.
+                </p>
+
+            </Card>
+                
             <h2> Your Definition Lists </h2>
             <Row>
                 {isLoading ? <Loader/> : 
