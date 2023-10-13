@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path';
 import multer from 'multer';
 import express from 'express'
+import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser';
@@ -23,6 +24,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/learning', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
+
+app.use(cors())
+
 app.post('/image', upload.single('image'), (req, res) => {
     
     const randomName = Math.random().toString(36).substring(7);
