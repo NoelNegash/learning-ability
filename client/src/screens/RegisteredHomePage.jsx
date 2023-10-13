@@ -20,13 +20,16 @@ const RegisteredHomePage = () => {
 
     return (
         <Container className='my-5'>
-            <Card>
-                <img src={logo} alt='logo' height='200px'></img>
-                <p className="text-center mb-4">
-                    The best working memory system to study for all your memorization needs.
-                </p>
+            <Container className='d-flex justify-content-center mb-2'>
 
-            </Card>
+                <Card className='p-5 d-flex flex-column align-items-center hero-card bg-light w-75'>
+                    <img src={logo} alt='logo' height='100px' className='mb-1'></img>
+                    <p className="text-center mb-4">
+                        The best working memory system to study for all your memorization needs.
+                    </p>
+
+                </Card>
+            </Container>
                 
             <h2> Your Definition Lists </h2>
             <Row>

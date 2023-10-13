@@ -173,7 +173,7 @@ const EditQuiz = () => {
             </Table>
             
             <Button variant="primary" onClick={handleAddCard}>
-                Add new Card
+                Add New Definition
                 </Button>
             </Col>
         </Row>

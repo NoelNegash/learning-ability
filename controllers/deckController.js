@@ -9,7 +9,7 @@ const getDecks = expressAsyncHandler(async (req, res) => {
 const newDeck = expressAsyncHandler(async (req, res) => {
     let deck = await Deck.create({
         userID: req.user._id,
-        name: "New Deck",
+        name: "New Definition List",
         cards: [],
     })
     res.status(200).json(deck)
