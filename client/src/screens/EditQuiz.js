@@ -42,7 +42,9 @@ const EditQuiz = () => {
     };
 
     const handleAddCard = async () => {
-        dispatch(addCard())
+        if (deck.cards.length < 150) dispatch(addCard())
+        else toast.error("Can't add more than 150 cards")
+        
     };
 
     const uploadImageAndGetUrl = (img) => {
