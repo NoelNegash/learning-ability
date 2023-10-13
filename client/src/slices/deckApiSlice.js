@@ -1,6 +1,6 @@
 import { apiSlice } from './apiSlice'
 
-const DECKS_URL = 'http://11.183.62.50.host.secureserver.net:5000/api/deck'
+const DECKS_URL = '/api/deck'
 
 export const deckApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

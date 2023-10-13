@@ -1,10 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "options": {
-    "allowedHosts": ["11.183.62.50.host.secureserver.net", "localhost", ".localhost"],
-    "proxy": "http://11.183.62.50.host.secureserver.net:5000"
-  },
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
