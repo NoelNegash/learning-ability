@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useLogoutMutation } from "../slices/usersApiSlice"
 import { logout } from "../slices/authSlice"
+import logo from '../logo.png'
 
 const Header = () => {
 
@@ -27,10 +28,10 @@ const Header = () => {
 
     return (
         <header>
-            <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+            <Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
                 <Container>
                     <LinkContainer to='/'>
-                        <Navbar.Brand> A Learning Ability </Navbar.Brand>
+                        <Navbar.Brand> <img height="60px" src={logo} alt='A Learning Ability'/></Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls='basic-navbar-nav'/>
                     <Navbar.Collapse id='basic-navbar-nav'>

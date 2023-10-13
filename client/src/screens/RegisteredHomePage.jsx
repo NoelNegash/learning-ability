@@ -3,7 +3,7 @@ import { Row, Col, Container, Button, Card } from "react-bootstrap"
 import Loader from '../components/Loader'
 import Deck from "../components/Deck"
 import { useEffect } from "react"
-import logo from '../logo.jpeg'
+import logo from '../logo.png'
 
 const RegisteredHomePage = () => {
     const {data: decks, isLoading, refetch} = useDecksQuery()
@@ -19,11 +19,11 @@ const RegisteredHomePage = () => {
     }
 
     return (
-        <Container className='my-5'>
-            <Container className='d-flex justify-content-center mb-2'>
+        <Container className='my-3'>
+            <Container className='d-flex justify-content-center mb-5'>
 
                 <Card className='p-5 d-flex flex-column align-items-center hero-card bg-light w-75'>
-                    <img src={logo} alt='logo' height='100px' className='mb-1'></img>
+                    <img src={logo} alt='A Learning Ability' height='150px' className='mb-1'></img>
                     <p className="text-center mb-4">
                         The best working memory system to study for all your memorization needs.
                     </p>
@@ -31,7 +31,7 @@ const RegisteredHomePage = () => {
                 </Card>
             </Container>
                 
-            <h2> Your Definition Lists </h2>
+            <h2 className='mb-2'> Your Definition Lists </h2>
             <Row>
                 {isLoading ? <Loader/> : 
                     decks.map((deck, index) => 
