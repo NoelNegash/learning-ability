@@ -13,10 +13,11 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const __hostname = '11.183.62.50.host.secureserver.net'
 dotenv.config()
 
 const app = express();
-const PORT = 5000;
+const PORT = 80;
 
 const upload = multer({ dest: 'public/images' });
 
@@ -25,10 +26,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/learning', {
     useUnifiedTopology: true,
 });
 
-app.use(cors({
-    origin:"http://11.183.62.50.host.secureserver.net:3000",
-    credentials: true
-}))
+app.use(cors())
 
 app.post('/image', upload.single('image'), (req, res) => {
     
@@ -39,11 +37,12 @@ app.post('/image', upload.single('image'), (req, res) => {
     
     fs.rename(req.file.path, filePath, (error) => {
         if (error) throw error;
-        res.json({ fileName:'http://localhost:5000/images/'+fileName });
+        res.json({ fileName:`http://${__hostname}/images/${fileName}` });
     });
 });
 
 app.use(express.static('public'))
+app.use(express.static('client/build'))
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
