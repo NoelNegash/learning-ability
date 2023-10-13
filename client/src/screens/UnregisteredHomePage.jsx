@@ -1,6 +1,6 @@
 import { Button, Card, Container } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap"
-import logo from '../../logo.jpeg';
+import logo from '../logo.jpeg';
 
 const UnregisteredHomePage = () => {
     return (
