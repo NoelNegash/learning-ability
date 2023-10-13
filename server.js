@@ -25,9 +25,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/learning', {
     useUnifiedTopology: true,
 });
 
-/*app.use(cors({
+app.use(cors({
+    origin:"http://11.183.62.50.host.secureserver.net:3000",
     credentials: true
-}))*/
+}))
 
 app.post('/image', upload.single('image'), (req, res) => {
     
