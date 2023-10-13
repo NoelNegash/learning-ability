@@ -19,7 +19,7 @@ const RegisteredHomePage = () => {
 
     return (
         <Container className='my-5'>
-            <h2> Your Decks </h2>
+            <h2> Your Definition Lists </h2>
             <Row>
                 {isLoading ? <Loader/> : 
                     decks.map((deck, index) => 
@@ -29,7 +29,7 @@ const RegisteredHomePage = () => {
                 <Col key={0} md={3} className="d-flex">
                     <Container className='d-flex align-items-center'>
                         <Button onClick={newDeckHandler} className='m-auto'>
-                            Add New Deck
+                            Add New Definition List
                         </Button>
                     </Container>
                 </Col>

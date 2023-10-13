@@ -4,6 +4,7 @@ import { BsTrash } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUpdateDeckMutation } from '../slices/deckApiSlice';
 import { setDeckName, setCardTerm, setCardDescription, setCardImage, deleteCard, addCard } from '../slices/deckSlice';
+import { toast }
 
 import Loader from '../components/Loader';
 
@@ -21,6 +22,7 @@ const EditQuiz = () => {
 
     const saveDeck = async () => {
         await updateDeck(deck)
+        toast("Definition list saved")
     }
 
     const handleDeckNameChange = async (event) => {

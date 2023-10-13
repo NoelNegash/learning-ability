@@ -25,14 +25,14 @@ function Question({question, points, numQuestion, answerCallback}) {
     }
 
 function GameScreen({ deck }) {
-    const generateQuestion = (q = {}) => {
+    const generateQuestion = (i = 0, q = {}) => {
         let cards = deck.cards
         let card
 
-        let i;
+        /*let i;
         while (i === undefined || (cards.length > 1 && (cards[i]._id === q._id))) {
             i = Math.floor(Math.random()*cards.length)
-        }
+        }*/
         card = cards[i]
         
         let possibleAnswers = [];
@@ -73,7 +73,7 @@ function GameScreen({ deck }) {
 
     const answerCallback = (points) => {
         setScore(s => s+points)
-        setQuestion(q => generateQuestion(q))
+        setQuestion(q => generateQuestion(numQuestion-1))
         setSeconds(() => 15*deck.increment)
         setNumQuestion(q => q+1);
     }
@@ -81,7 +81,7 @@ function GameScreen({ deck }) {
     const formatSeconds = (s) => `${Math.floor(s/60)}:${Math.floor(s)%60}`
 
     const POINTS = 10;
-    const NUM_QUESTIONS = 20;
+    const NUM_QUESTIONS = deck.cards.length;
 
     const [score, setScore] = useState(0);
     const [numQuestion, setNumQuestion] = useState(1);
