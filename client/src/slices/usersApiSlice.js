@@ -1,6 +1,6 @@
 import { apiSlice } from './apiSlice'
 
-const USERS_URL = '/api/user'
+const USERS_URL = 'http://11.183.62.50.host.secureserver.net:5000/api/user'
 
 export const userApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
