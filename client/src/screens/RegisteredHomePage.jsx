@@ -31,7 +31,7 @@ const RegisteredHomePage = () => {
                 </Card>
             </Container>
                 
-            <h2 className='mb-2'> Your Definition Lists </h2>
+            <h2 className='mb-4'> Your Definition Lists </h2>
             <Row>
                 {isLoading ? <Loader/> : 
                     decks.map((deck, index) => 

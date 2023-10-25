@@ -13,7 +13,7 @@ const protect = asyncHandler(async (req, res, next) => {
             next();
         } catch (error) {
             res.cookie('jwt', '', {
-                httpOnly: true,
+                secure: true, sameSite: 'None',
                 expires: new Date(0)
             })
             res.status(401)

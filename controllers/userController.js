@@ -11,7 +11,8 @@ const authUser = expressAsyncHandler(async (req, res) => {
         generateToken(res, user._id)
         res.status(200).json(({
             name: user.name,
-            email
+            email,
+            accountExpires: user.accountExpires
         }))
     } else {
         throw new Error("Invalid email or password")
@@ -38,6 +39,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
             _id: user._id,
             name,
             email,
+            accountExpires: user.accountExpires
         })
     } else {
         res.status(400) 
@@ -47,7 +49,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
 
 const logoutUser = expressAsyncHandler(async (req, res) => {
     res.cookie('jwt', '', {
-        httpOnly: true,
+        secure: true, sameSite: 'None',
         expires: new Date(0)
     })
     res.status(200).json({

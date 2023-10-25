@@ -30,6 +30,7 @@
   background-color: #f0f0f0;
   font-weight: bold;
   text-align: center;
+
   vertical-align: middle;
 }
 
@@ -62,4 +63,29 @@
 .deck-name {
   font-weight: bold;
   font-size: 500;
+}
+
+.progress-bar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.correct-answer {
+  animation: correct-answer 0.3s ease-in forwards;
+}
+
+.incorrect-answer {
+  animation: incorrect-answer 0.3s ease-in forwards;
+}
+
+@keyframes correct-answer {
+  to {
+    background-color: rgb(96, 226, 183);
+  }
+}
+@keyframes incorrect-answer {
+  to {
+    background-color: #fe8682;
+  }
 }

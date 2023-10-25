@@ -20,6 +20,9 @@ const deckSlice =  createSlice({
         setDeckName: (state, action) => {
             state.deck.name = action.payload
         },
+        setDeckPublic: (state, action) => {
+            state.deck.public = action.payload
+        },
         setCardTerm: (state, action) => {
             state.deck.cards[action.payload.index].term = action.payload.term
         }, 
@@ -33,12 +36,13 @@ const deckSlice =  createSlice({
             state.deck.cards.splice(action.payload, 1)
         }, 
         addCard: (state, action) => {
-            state.deck.cards = [...state.deck.cards, {image:'', term:'', description:''}]
+            var card = action.payload.card ? action.payload.card : {image:'', term:'', description:''}
+            state.deck.cards = [...state.deck.cards, card]
             console.log(state.deck.cards)
         }
     }
 })
 
-export const { setDeck, setDeckName, setCardTerm, setCardDescription, setCardImage, deleteCard, addCard, setDeckIncrement, setDeckImages } = deckSlice.actions
+export const { setDeck, setDeckName, setCardTerm, setCardDescription, setCardImage, deleteCard, addCard, setDeckIncrement, setDeckImages, setDeckPublic } = deckSlice.actions
 
 export default deckSlice.reducer

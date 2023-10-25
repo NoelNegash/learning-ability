@@ -7,6 +7,14 @@ export const UserSchema = new Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
+    accountExpires: {
+        type: Date,
+        default: () => {
+            const expirationDate = new Date();
+            expirationDate.setMonth(expirationDate.getMonth() + 1);
+            return expirationDate;
+        },
+    },
 });
 
 UserSchema.pre('save', async function (next) {

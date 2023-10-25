@@ -13,6 +13,7 @@ import store from './store'
 import { Provider } from 'react-redux';
 import HomePage from './screens/HomePage';
 import DrillQuiz from './screens/DrillQuiz';
+import Profile from './screens/Profile';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<SignUpScreen />}></Route>
       <Route path='/edit' element={<EditQuiz />}></Route>
       <Route path='/quiz' element={<DrillQuiz />}></Route>
+      <Route path='/profile' element={<Profile />}></Route>
     </Route>
   )
 )

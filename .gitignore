@@ -1,4 +1,9 @@
 .env
 node_modules
+certs
+public/images
+client/.env
+client/key.pem
+client/cert.pem
 client/node_modules
 client/build

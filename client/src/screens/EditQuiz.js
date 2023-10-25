@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Table, Form, Button } from 'react-bootstrap';
-import { BsTrash } from 'react-icons/bs';
+import { BsPlusCircle, BsTrash } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUpdateDeckMutation } from '../slices/deckApiSlice';
 import { setDeckName, setCardTerm, setCardDescription, setCardImage, deleteCard, addCard } from '../slices/deckSlice';
 import { toast } from 'react-hot-toast';
+import { SERVER_NAME } from '../slices/apiSlice';
 
 import Loader from '../components/Loader';
 
@@ -15,6 +16,8 @@ const EditQuiz = () => {
     const [updateDeck] = useUpdateDeckMutation()
 
     const { deck } = useSelector((state) => state.deck)
+    const [generationPrompt, setGenerationPrompt] = useState('')
+    const [generatedCards, setGeneratedCards] = useState(null)
 
     useEffect(() => {
         if (updateDeck) updateDeck(deck)
@@ -41,8 +44,8 @@ const EditQuiz = () => {
         dispatch(deleteCard(index))
     };
 
-    const handleAddCard = async () => {
-        if (deck.cards.length < 150) dispatch(addCard())
+    const handleAddCard = async (card=null) => {
+        if (deck.cards.length < 150) dispatch(addCard({card:card}))
         else toast.error("Can't add more than 150 cards")
         
     };
@@ -63,7 +66,7 @@ const EditQuiz = () => {
             formData.append('image', file);
         
             try {
-                const response = await fetch('/image', {
+                const response = await fetch(SERVER_NAME+'/image', {
                     method: 'POST',
                     body: formData,
                 });
@@ -113,7 +116,7 @@ const EditQuiz = () => {
             <Table bordered className="cards-table">
                 <thead>
                 <tr>
-                    {/*<th>Image</th>*/}
+                    {deck.images && <th>Image</th>}
                     <th>Term</th>
                     <th>Description</th>
                     <th></th>
@@ -122,25 +125,26 @@ const EditQuiz = () => {
                 <tbody>
                 {deck.cards.length > 0 ? deck.cards.map((card, index) => (
                     <tr key={index}>
-                     {/*<td onDrop={(event) => handleImageDrop(index, event)} onDragOver={handleDragOver}>
-                        {card.image ? (
-                        <img src={card.image} alt="Card" width="64" height="64" />
-                        ) : (
-                        <div
-                            style={{
-                            margin:'auto',
-                            width: '72px',
-                            height: '72px',
-                            fontSize:10,
-                            border: '1px dashed #ccc',
-                            textAlign: 'center',
-                            lineHeight: '64px',
-                            }}
-                        >
-                            Add Image
-                        </div>
-                        )}
-                        </td>*/}
+                    { deck.images && 
+                        <td onDrop={(event) => handleImageDrop(index, event)} onDragOver={handleDragOver}>
+                            {card.image ? (
+                            <img src={SERVER_NAME + card.image} alt="Card" width="64" height="64" />
+                            ) : (
+                            <div
+                                style={{
+                                margin:'auto',
+                                width: '72px',
+                                height: '72px',
+                                fontSize:10,
+                                border: '1px dashed #ccc',
+                                textAlign: 'center',
+                                lineHeight: '64px',
+                                }}
+                            >
+                                Add Image
+                            </div>
+                            )}
+                        </td>}
                     <td>
                         <Form.Control
                         type="text"
@@ -172,9 +176,81 @@ const EditQuiz = () => {
                 </tbody>
             </Table>
             
-            <Button variant="primary" onClick={handleAddCard}>
+            <Button variant="primary" onClick={()=>handleAddCard()}>
                 Add New Definition
-                </Button>
+            </Button>
+            <h3 className='mt-5 mb-2'>
+                Generate Cards With AI
+            </h3>
+            <Col className='d-flex my-3'>
+                <Form.Control type='textarea' placeholder='Enter prompt . . .' value={generationPrompt} onChange={(e) => setGenerationPrompt(e.target.value)}></Form.Control>
+                <Button onClick={() => {
+                    if (generationPrompt !== '') {
+                        setGeneratedCards([{term:"Hello", description:"World"},{term:"Hello", description:"World"},{term:"Hello", description:"World"},{term:"Hello", description:"World"}])
+                        setGenerationPrompt('');
+                    }
+                }}>Generate</Button>
+            </Col>
+
+            {generatedCards && generatedCards.length > 0 &&
+            <Table className='bordered cards-table'>
+                <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {generatedCards.map((card, index) => (
+                    <tr key={index}>
+                    <td>
+                        <Form.Control
+                        type="text"
+                        value={card.term}
+                        onChange={(event) => (e) => {
+                            card.term = e.target.value
+                            setGeneratedCards([...generatedCards])
+                        }}
+                        style={{ backgroundColor: 'whitesmoke', height: "auto" }}
+                        />
+                    </td>
+                    <td>
+                        <Form.Control
+                        as="textarea"
+                        value={card.description}
+                        onChange={(event) => (e) => {
+                            card.description = e.target.value
+                            setGeneratedCards([...generatedCards])
+                        }}
+                        style={{ backgroundColor: 'whitesmoke' }}
+                        />
+                    </td>
+                    <td>
+                        <Col className='d-flex justify-content-around'>
+                            <BsPlusCircle
+                            size={20} 
+                            onClick={() => {
+                                var card = generatedCards.splice(index,1)[0];
+                                setGeneratedCards([...generatedCards])
+                                handleAddCard(card)
+                            }}
+                            style={{ cursor: 'pointer' }}/>
+                            <BsTrash
+                            size={20}
+                            onClick={() => {
+                                generatedCards.splice(index,1)
+                                setGeneratedCards([...generatedCards])
+                            }}
+                            style={{ cursor: 'pointer' }}
+                            />
+                        </Col>
+                    </td>
+                    </tr>
+                ))}
+                </tbody>    
+            </Table>}
             </Col>
         </Row>
         </Container> : 

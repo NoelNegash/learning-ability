@@ -8,6 +8,7 @@ const DeckSchema = new Schema({
     cards: { type: [CardSchema], required: true },
     increment: { type: Number, default: 1, required: true },
     images: { type: Boolean, default: false, required: true },
+    public: { type: Boolean, default: false, required: true },
     createdAt: { type: Date, default: Date.now },
 });
 

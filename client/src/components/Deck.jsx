@@ -1,7 +1,7 @@
 import React from 'react';
-import { setDeck, setDeckIncrement } from '../slices/deckSlice';
+import { setDeck, setDeckIncrement, setDeckPublic, setDeckImages } from '../slices/deckSlice';
 import { useDispatch } from 'react-redux';
-import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Badge, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useUpdateDeckMutation } from '../slices/deckApiSlice';
 import { toast } from 'react-hot-toast'
@@ -23,6 +23,20 @@ const Deck = ({ deck, refetch }) => {
         d.increment = i;
         updateDeck(d);
         refetch()
+    }
+
+    const toggleDeckPublic = () => {
+        let d = {...deck}
+        d.public = !d.public;
+        updateDeck(d)
+        refetch();
+    }
+
+    const toggleDeckImages = () => {
+        let d = {...deck}
+        d.images = !d.images;
+        updateDeck(d)
+        refetch();
     }
 
     const drillHandler = () => {
@@ -52,6 +66,11 @@ const Deck = ({ deck, refetch }) => {
                     </Button>
 
                 </Container>
+                <hr/>
+                <Row className='justify-content-center'>
+                    <Col md={4}><Form.Check type="checkbox" label="Images" checked={deck.images} onChange={toggleDeckImages}/></Col>
+                    <Col md={4}><Form.Check type="checkbox" label="Public" checked={deck.public} onChange={toggleDeckPublic}/></Col>
+                </Row>
                 <hr/>
                 <Col>
                     <Col >

@@ -27,7 +27,7 @@ const Header = () => {
     }
 
     return (
-        <header>
+        <header className="mb-3">
             <Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
                 <Container>
                     <LinkContainer to='/'>
@@ -39,9 +39,14 @@ const Header = () => {
                             {userInfo ? 
                             <>
                                 <NavDropdown title={userInfo.name} id='username'>
-                                    <LinkContainer to="/decks">
+                                    <LinkContainer to="/">
                                         <NavDropdown.Item>
-                                            Definition Lists
+                                            Home
+                                        </NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to="/profile">
+                                        <NavDropdown.Item>
+                                            Profile
                                         </NavDropdown.Item>
                                     </LinkContainer>
                                     <NavDropdown.Item onClick={ logoutHandler }> Logout </NavDropdown.Item>
